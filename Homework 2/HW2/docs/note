@@ -1,0 +1,179 @@
+================================
+Overall discussion with the data
+================================
+- The data set has 13 attributes, and those are coord_X,coord_Y,month,day,FFMC,DMC,DC,ISI,temp,RH,wind,rain,area.
+- 517 examples
+- Most of the data entry for attribute area is 0, and some values of rain are 0, as well.
+- Intuitively Data and month are both nominal and ordinal level of measurements, but in this data their order is meaning less.
+  Therefore, they will be considered as nominal data (Make more inferences)
+
+==============================================
+Attributes (features, factors, and variables)
+=============================================
+
+coord_X - x-axis spatial coordinate within a topographical map of the area of interest. (Ratio Data)
+coord_Y - y-axis spatial coordinate within a topographical map of the area of interest. (Ratio Data)
+
+month - the month in which the forest fire happened  (Nominal)
+day - the day of the week in which the forest fire happened (Nominal)
+
+
+FFMC - Fine Fuel Moisture Code from the Fire Weather Index (FWI) System (
+DMC - Duff Moisture Code from the Fire Weather Index (FWI) System
+DC - Draught Code from the Fire Weather Index (FWI) System
+ISI - Initial Spread Index from the Fire Weather Index (FWI) System
+temp - temperature in Celsius degrees (interval)
+RH - relative humidity in %  (ratio)
+wind - wind speed in km/h  (ratio)
+rain - outside rain in mm/m2  (ratio)
+area - the burned area of the forest in hectares  (ordinal)
+
+=========================
+Level Of Measurements
+=========================
+Nominal: label name assigned to them
+        - The weakest
+        - (E.g. age - teen youth adult)
+        - E.g. True/False
+        - We do not know wheather true or false come next comes next
+        - There is no distance between true and false
+        - Having absence of true or false does not mean anything (not ratio)
+Ordinal: Name(nominal) + order
+        - A named label, and there is ordering of attributes.
+        - E.g. Infant -> teen ->  young -> old
+        - E.g. Student number
+Interval: Nominal + Ordinal + Fixed distance
+        - Temperature: 85 -> 90 -> 95
+        - Temperature in celcious
+Ratio: Nominal + ordinal + Interval + meaningful zero value
+        - Temperature in calvin
+        - Platlets counts:  having zero platlets mean something
+        - Number of students (Having zero student mean some thing)
+
+=====================
+Issues with the data
+=====================
+
+Sparse data
+mission values
+In accurate values
+Unbalanced data
+Scale difference
+proxy variable
+
+=============
+Importance
+=============
+1. Rain (Ratio): Most of its value is zero and small.
+        - Therefore, it does not have much impact on the overall data mining process
+2. Area (Ratio): Most of its value is zero, and it may not have a much greater impact on the overall result
+3. Wind (Ratio): Vary important:
+4. RH (Ordinal):Very Important
+5. Temp (Interval): Very Important
+6. ISI (ordinal):   Important
+7. DC (ordinal):  Important
+8. DMC (ordinal):  Important
+9. FFMC (ordinal): Important
+10. Day (ordinal):  less important
+11. Month (ordinal): less important
+12. Coord_Y (ordinal): Important
+13. Coord_x (ordinal) Important
+
+
+
+
+Data Cleaning
+
+1. Dealing with different data types
+Numeric. income
+categorical: gender
+ordinal low/midium/high (scale)
+
+Models only handle numeric values so categorical data should be changed to numeric
+chnage to a set of dammy values  (female =0/1 and male 0/1)
+
+example: degree
+0 - Bachelors
+1 Mastes
+2 highschool grad
+3. 11th
+example using pands
+print (pd.get_dummies(X['education']).head(5))
+
+2. Missing data
+models can not handle missing data
+
+Simple but non efficent solution
+- Remove observations/features that have missing data
+- Removing may cause a lot of issues
+    * Potentially loss of a lot of data
+    * You introduce potential biases
+    * poor solution
+
+solution: using imputation
+ * Replacing values with another values
+ * Strategies: mean, median, highest frequency value of a given feature
+
+
+ Data Exploration
+ 1. Outlier detection: an autlier i an observation that deviates drastically from the normal
+  it can skew your model
+
+  solution
+
+- Tukey IQR (inter quertial range)
+    * Identifiers extrme value in a data
+- Outlier detection-  Kernel Density
+
+
+Find out the interaction of two variables
+overfit: not go out of dimention
+
+
+Dimentionality reduction using PCA
+
+model creating
+
+separate the data in train and test - using skit learn
+
+sklearn lean feature selection
+
+
+
+David A. Wood (2021). Prediction and data mining of burned areas of forest fires: Optimized data matching and mining algorithm provides valuable insight,
+Artificial Intelligence in Agriculture. Volume 5. Pages 24-42. Accessed on (2021 Jun 19) from https://doi.org/10.1016/j.aiia.2021.01.004
+
+FFMC - Fine Fuel Moisture Code from the Fire Weather Index (FWI) System
+
+combines measurements
+of rainfall, relative humidity, temperature and wind speed to
+provide an indicator of the degree of moisture in forest floor litter, its
+likelihood to ignite, and the rate of likely spread of a fire once ignited.
+
+DMC - Duff Moisture Code from the Fire Weather Index (FWI) System
+- Combines measurements of rainfall, relative humidity and temperature
+DC - Draught Code from the Fire Weather Index (FWI) System
+- combines just rainfall and temperature.
+ISI - Initial Spread Index from the Fire Weather Index (FWI) System
+involves a correlation between FFMC
+and wind velocity and is used as an indicator of how quickly a fire is
+likely to spread.
+
+
+Data Tidying
+- Structuring datasets to facilitate analysis
+
+Data Cleaning involves
+- Outlier checking
+- Data parsing
+- Missing value imputation
+
+
+The accuracy of my regression model turned out to negative (-ve) value which indicates my it was a really bad model. The error may have been
+caused by a number of reasons. I may have been selected attributes that are really do not have over at least greater than and equal to
+absolute value 0.5. The second reason the correlation between each selected element
+
+
+
+
+
